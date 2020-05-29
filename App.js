@@ -1,18 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 
+import WelcomeView from "./views/WelcomeView";
+
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Power Trace</Text>
-      <Text>Welcome Back!</Text>
-
-      <Image source={require("./assets/img/PT3.png")} />
-
-      {/* <Button title="Bluetooth" />
-      <Button title="Location Services" /> */}
-    </View>
-  );
+  return <WelcomeView />;
 };
 
 export default App;
@@ -23,5 +15,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#d4bfff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  icons_flex: {
+    display: "flex",
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
