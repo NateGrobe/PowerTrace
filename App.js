@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
 const App = () => {
-  
+
   return (
     <View style={styles.container}>
       <Text>Power Trace</Text>
@@ -19,7 +19,7 @@ export default App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#B8E2F2',
     alignItems: 'center',
     justifyContent: 'center',
   },
