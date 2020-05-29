@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 
 const App = () => {
   return (
@@ -7,19 +7,21 @@ const App = () => {
       <Text>Power Trace</Text>
       <Text>Welcome Back!</Text>
 
-      <Button title='Bluetooth' />
-      <Button title='Location Services' />
-    </View>
-  )
-}
+      <Image source={require("./assets/img/PT3.png")} />
 
-export default App
+      {/* <Button title="Bluetooth" />
+      <Button title="Location Services" /> */}
+    </View>
+  );
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#B8E2F2',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#d4bfff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-})
+});
