@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
 const App = () => {
-  
   return (
     <View style={styles.container}>
       <Text>Power Trace</Text>
@@ -23,4 +22,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
