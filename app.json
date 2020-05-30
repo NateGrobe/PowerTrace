@@ -9,9 +9,8 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "scheme": "myapp",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#B8E2F2"
     },

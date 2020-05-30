@@ -1,7 +1,18 @@
-import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+//import * as WebBrowser from 'expo-web-browser';
+import * as React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+//import { ScrollView } from 'react-native-gesture-handler';
 
-const WelcomeView = () => {
+//import { MonoText } from '../components/StyledText';
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <Home />
+    </View>
+  );
+}
+const Home = () => {
   return (
     <View style={styles.container}>
       <Image
@@ -11,11 +22,7 @@ const WelcomeView = () => {
         }}
       />
 
-      <Text
-        style={{
-          color: "white",
-        }}
-      >
+      <Text style={{ color: "white", }} >
         Together, let’s stop the spread of COVID-19.
       </Text>
 
@@ -46,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeView;
+
