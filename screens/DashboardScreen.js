@@ -20,14 +20,13 @@ export default function DashboardPage() {
 
 const Dashboard = () => {
   const [user, setUser] = useState([]);
-  const tmpUsr = "5ed15e8c32b5edd94dcdd00b";
+  const id = "5ed15e8c32b5edd94dcdd00b";
 
   useEffect(() => {
-    userServices.getUser(tmpUsr).then((res) => {
-      setUser(res);
-    });
+    userServices.getUser(id).then((u) => setUser(u));
   }, []);
 
+  console.log(user);
   return (
     <View style={styles.container}>
       <View style={{ paddingTop: 40 }}>
@@ -37,22 +36,23 @@ const Dashboard = () => {
       </View>
       <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
       <View style={styles.statusContainer}>
-        <View style={{ paddingTop: 50 }}>
-          <StatusBoard
-            style={styles.statusBoard}
-            boxTitle="My Health Status"
-            boxDescription="Keep track of your health status and update it to keep those around
-            you safe!"
-            boxIndicator="Current Status"
-            // boxContent="H E A L T H Y  &  V I R U S - F R E E 💪"
-            boxContent={
-              user.infected
-                ? "I N F E C T E D !"
-                : "H E A L T H Y & V I R U S - F R E E 💪"
-            }
-            btnText="Update Status"
-            iconName="heartbeat"
-          />
+        <View>
+          <View style={{ paddingTop: 40 }}>
+            <StatusBoard
+              style={styles.statusBoard}
+              boxTitle="My Health Status"
+              boxDescription="Keep track of your health status and update it to keep those around
+              you safe!"
+              boxIndicator="Current Status"
+              boxContent={
+                user.infected
+                  ? "I N F E C T E D !"
+                  : "H E A L T H Y & V I R U S - F R E E 💪"
+              }
+              btnText="Update Status"
+              iconName="heartbeat"
+            />
+          </View>
         </View>
         <View>
           <View style={{ paddingTop: 40 }}>
