@@ -34,7 +34,6 @@ const Home = () => {
       </Text>
 
       <Image source={require("../assets/img/PT3.png")} />
-      <Image source={require('../assets/img/PT3.png')}/>
 
       <View style={styles.icons_flex}>
         <Image source={require("../assets/img/person.png")} />
