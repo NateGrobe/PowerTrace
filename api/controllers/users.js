@@ -14,12 +14,41 @@ usersRouter.post('/', async (req, res) => {
 
   const user = new User({
     username: body.username,
-    name: body.name,
-    passwordHash
+    passwordHash,
+    infected: body.infected,
   })
 
   const savedUser = await user.save()
   res.json(savedUser)
+})
+
+// single user
+usersRouter.get('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id)
+  console.log(user)
+  if (user) 
+    res.json(user.toJSON())
+  else
+    res.status(404).end()
+})
+
+usersRouter.put('/:id', async (req, res) => {
+  const body = req.body
+  const userBeforeChange = await User.findById(req.params.id)
+  const newConnection = await User.findById(body.connections)
+
+  const connIsUnique = userBeforeChange.connections.filter(c => c === body.connections).length !== 0
+
+  let user = {}
+
+  if (connIsUnique) {
+    user = {
+      infected: newConnection.infected || userBeforeChange.infected,
+      connections: userBeforeChange.connections.concat(body.connections)
+    }
+  }
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, user, { new: true })
+  res.json(updatedUser.toJSON())
 })
 
 module.exports = usersRouter
