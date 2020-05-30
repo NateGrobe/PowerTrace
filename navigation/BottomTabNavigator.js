@@ -3,10 +3,8 @@ import * as React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
 import ReportScreen from "../screens/Report";
 import DashboardScreen from "../screens/DashboardScreen";
-import GetStartedScreen from "../screens/GetStarted";
 import NotifScreen from "../screens/NotifScreen";
 
 const BottomTab = createBottomTabNavigator();
