@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions } from "react-native";
 
 import ProgressBar from "../components/ProgressBar";
 import StatusBoard from "../components/StatusBoard";
+import PeopleIconsBar from "../components/PeopleIconsBar";
 
 export default function DashboardPage() {
   const [mounted, setMounted] = useState(false);
@@ -18,6 +19,7 @@ const Dashboard = () => {
   return (
     <View style={styles.content}>
       <ProgressBar style={styles.progressBar} />
+      <PeopleIconsBar style={{ paddingBottom: 5 }} />
       <View style={styles.statusContainer}>
         <StatusBoard
           boxTitle="My Health Status"
@@ -49,21 +51,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: Dimensions.get("window").width,
-    minHeight: Dimensions.get("window").height,
   },
   statusContainer: {
-    flex: 1,
+    display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
   },
   content: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
-    minHeight: Dimensions.get("window").height,
+    width: "100%",
   },
   progressBar: {
-    paddingTop: 5,
+    marginTop: 5,
     marginBottom: 10,
   },
 });
