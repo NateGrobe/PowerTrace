@@ -26,28 +26,31 @@ export default function App() {
     return null;
   } else if (!started) {
     return (
-      <View style={styles.getStarted}>
-        {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
-        <View style={{ marginLeft: 10, marginTop: 50 }}>
-          <Image
-            style={{ marginTop: 0 }}
-            source={require("./assets/img/PT3.png")}
-          />
-          <View style={styles.icons_flex}>
-            <View style={{ marginRight: 20 }}>
-              <Image source={require("./assets/img/person.png")} />
-              <View style={{ marginTop: 40 }}>
-                <Image source={require("./assets/img/person1.png")} />
+      <View style={styles.container}>
+        <View style={styles.getStarted}>
+          {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
+          <View style={{ marginLeft: 10, marginTop: 50 }}>
+            <Image
+              style={{ marginTop: 0 }}
+              source={require("./assets/img/PT3.png")}
+            />
+            <View style={styles.icons_flex}>
+              <View style={{ marginRight: 20 }}>
+                <Image source={require("./assets/img/person.png")} />
+                <View style={{ marginTop: 40 }}>
+                  <Image source={require("./assets/img/person1.png")} />
+                </View>
               </View>
             </View>
           </View>
         </View>
-
-        <Button
-          color="#9364AE"
-          title="Let's Get Started!"
-          onPress={() => setStarted(true)}
-        />
+        <View style={styles.btn}>
+          <Button
+            color="#9364AE"
+            title="Let's Get Started!"
+            onPress={() => setStarted(true)}
+          />
+        </View>
       </View>
     );
   } else {
@@ -66,7 +69,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: Dimensions.get("screen").height,
     backgroundColor: "#d4bfff",
   },
   getStarted: {
@@ -84,6 +87,13 @@ const styles = StyleSheet.create({
     width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
-    height: Dimensions.get("window").height - 300,
+  },
+  btn: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+    position: "absolute",
+    bottom: 15,
   },
 });
