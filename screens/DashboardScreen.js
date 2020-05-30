@@ -29,7 +29,7 @@ const Dashboard = () => {
   console.log(user);
   return (
     <View style={styles.container}>
-      <View style={{ paddingTop: 40 }}>
+      <View style={{ paddingTop: 30 }}>
         <View>
           <ProgressBar style={styles.progressBar} />
         </View>
@@ -37,7 +37,7 @@ const Dashboard = () => {
       <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
       <View style={styles.statusContainer}>
         <View>
-          <View style={{ paddingTop: 40 }}>
+          <View style={{ paddingTop: 10 }}>
             <StatusBoard
               style={styles.statusBoard}
               boxTitle="My Health Status"
@@ -55,7 +55,7 @@ const Dashboard = () => {
           </View>
         </View>
         <View>
-          <View style={{ paddingTop: 40 }}>
+          <View style={{ paddingTop: 15 }}>
             <StatusBoard
               style={styles.statusBoard}
               boxTitle="My Risk Levels"
