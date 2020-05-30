@@ -2,15 +2,15 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
-export default function ProgressBar() {
+export default function ProgressBar(props) {
   return (
     <View>
-      <Progress />
+      <Progress {...props} />
     </View>
   );
 }
 
-const DayCount = () => {
+const DayCount = (props) => {
   return (
     <View style={styles.dayCount}>
       <Text style={styles.titleText}>76</Text>
@@ -19,7 +19,7 @@ const DayCount = () => {
   );
 };
 
-const Progress = () => {
+const Progress = (props) => {
   return (
     <AnimatedCircularProgress
       // size={Dimensions.get("window").width - 100}
