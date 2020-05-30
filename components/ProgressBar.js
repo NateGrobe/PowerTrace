@@ -12,7 +12,7 @@ export default function ProgressBar() {
 
 const DayCount = () => {
   return (
-    <View style={styles.day_count}>
+    <View style={styles.dayCount}>
       <Text style={styles.titleText}>76</Text>
       <Text style={styles.baseText}>Days of Staying Safe</Text>
     </View>
@@ -22,7 +22,8 @@ const DayCount = () => {
 const Progress = () => {
   return (
     <AnimatedCircularProgress
-      size={Dimensions.get("window").width - 100}
+      // size={Dimensions.get("window").width - 100}
+      size={250}
       width={25}
       fill={20}
       tintColor="#9365AE"
@@ -35,7 +36,7 @@ const Progress = () => {
 };
 
 const styles = StyleSheet.create({
-  day_count: {
+  dayCount: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: "#fff",
-    fontSize: 98,
+    fontSize: 100,
     margin: 0,
     textShadowColor: "rgba(0, 0, 0, 0.25)",
     textShadowOffset: { width: 0, height: 4 },
