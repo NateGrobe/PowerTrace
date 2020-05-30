@@ -18,34 +18,38 @@ export default function DashboardPage() {
 const Dashboard = () => {
   return (
     <View style={styles.container}>
-      <View>
-        <ProgressBar style={styles.progressBar} />
-      </View>
-      <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
-      <View style={styles.statusContainer}>
+      <View style={{ paddingTop: 40 }}>
         <View>
+          <ProgressBar style={styles.progressBar} />
+        </View>
+      </View>
+        <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
+      <View style={styles.statusContainer}>
+        <View style={{ paddingTop: 50 }}>
           <StatusBoard
             style={styles.statusBoard}
             boxTitle="My Health Status"
             boxDescription="Keep track of your health status and update it to keep those around
             you safe!"
             boxIndicator="Current Status"
-            boxContent="H E A L T H Y & V I R U S - F R E E 💪"
+            boxContent="H E A L T H Y  &  V I R U S - F R E E 💪"
             btnText="Update Status"
             iconName="heartbeat"
           />
         </View>
         <View>
-          <StatusBoard
-            style={styles.statusBoard}
-            boxTitle="My Risk Levels"
-            boxDescription="Stay informated of your possible exposure to the virus"
-            boxIndicator="Current Risk"
-            boxContent="S A F E ✔️"
-            btnText="Check your Exposure"
-            iconName="warning"
-            complementaryText="Great! You’ve not been in contact with COVID-19 patients. "
-          />
+          <View style={{ paddingTop: 50 }}>
+            <StatusBoard
+              style={styles.statusBoard}
+              boxTitle="My Risk Levels"
+              boxDescription="Stay informated of your possible exposure to the virus"
+              boxIndicator="Current Risk"
+              boxContent="S A F E ✔️"
+              btnText="Check your Exposure"
+              iconName="warning"
+              complementaryText="Great! You’ve not been in contact with COVID-19 patients. "
+            />
+          </View>
         </View>
       </View>
     </View>
