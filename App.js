@@ -19,13 +19,15 @@ export default function App() {
     return (
       <View style={styles.getStarted}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-
-        <Image source={require("./assets/img/PT3.png")} />
-
-        <View style={styles.icons_flex}>
-          <Image source={require("./assets/img/person.png")} />
-          <View style={{ paddingTop: 40 }}>
-            <Image source={require("./assets/img/person1.png")} />
+        <View style={{ paddingTop: 50, paddingLeft:10}}>
+          <Image source={require("./assets/img/PT3.png")} />
+          <View style={styles.icons_flex}>
+            <View style={{ paddingRight:20}}>
+              <Image source={require("./assets/img/person.png")} />
+              <View style={{ paddingTop: 40 }}>
+                <Image source={require("./assets/img/person1.png")} />
+              </View>
+            </View>
           </View>
         </View>
 
