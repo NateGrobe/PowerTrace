@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-n
 export default function GetStartedScreen() {
   return (
     <View style={styles.container}>
-      <Report />
     </View>
   )
 }
