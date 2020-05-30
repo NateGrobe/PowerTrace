@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import {
   Platform,
   StatusBar,
@@ -10,17 +10,36 @@ import {
   Image,
   Text,
   Dimensions,
+  TextInput,
 } from "react-native";
 
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
 
+import loginServices from './services/login'
+
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [currentUser, setCurrentUser] = useState({})
+  const [submitted, setSubmitted] = useState(false)
   const isLoadingComplete = useCachedResources();
+
+  useEffect(() => {
+    loginServices
+      .validateLogin(username, password)
+      .then(u => {
+        setCurrentUser(u)
+        setStarted(true)
+      })
+      .catch(e => {
+        setSubmitted(false)
+      })
+  }, [submitted])
 
   if (!isLoadingComplete) {
     return null;
@@ -40,6 +59,19 @@ export default function App() {
                 <View style={{ marginTop: 40 }}>
                   <Image source={require("./assets/img/person1.png")} />
                 </View>
+                <TextInput 
+                  style={styles.input} 
+                  placeholder=' Username' 
+                  value={username}
+                  onChangeText={username => setUsername(username)}
+                /> 
+                <TextInput 
+                  style={styles.input} 
+                  placeholder=' Password' 
+                  secureTextEntry={true} 
+                  value={password}
+                  onChangeText={pass => setPassword(pass)}
+                /> 
               </View>
             </View>
           </View>
@@ -48,7 +80,7 @@ export default function App() {
           <Button
             color="#9364AE"
             title="Let's Get Started!"
-            onPress={() => setStarted(true)}
+            onPress={() => setSubmitted(true)}
           />
         </View>
       </View>
@@ -95,5 +127,12 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     bottom: 15,
+  },
+  input: {
+    backgroundColor: 'white',
+    height: 40,
+    width: 300,
+    borderRadius: 5,
+    marginBottom: 4,
   },
 });
