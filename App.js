@@ -16,6 +16,7 @@ import {
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
+import HomeScreen from './screens/HomeScreen'
 
 import loginServices from './services/login'
 
@@ -36,7 +37,7 @@ export default function App() {
         setCurrentUser(u)
         setStarted(true)
       })
-      .catch(e => {
+      .catch(err => {
         setSubmitted(false)
       })
   }, [submitted])
@@ -86,6 +87,7 @@ export default function App() {
       </View>
     );
   } else {
+    global.id = currentUser.id
     return (
       <View style={styles.container}>
         {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
