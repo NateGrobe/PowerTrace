@@ -27,7 +27,6 @@ const Dashboard = () => {
       .then(u => setUser(u))
   }, [])
 
-  console.log(user)
   return (
     <View style={styles.container}>
       <View style={{ paddingTop: 40 }}>
