@@ -3,17 +3,40 @@ import { Image, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-n
 
 export default function ReportScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <Report />
     </View>
   )
 }
 
 const Report = () => {
-  
+
   return (
-    <View>
-      <Text>Report Page. IDK needs to be more than this</Text>
+    <View style={styles.container}>
+      <View style={{ paddingTop: 10}}>
+        <Image source={require("../assets/img/healthreport.png")} />
+
+        <View style={{ paddingTop: 18, paddingLeft: 60}}>
+          <Image source={require("../assets/img/firstaidkit.png")}
+          />
+        </View>
+      </View>
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#d4bfff",
+    alignItems:"center",
+    justifyContent:"center",
+    width:"100%",
+  },
+  icons_flex: {
+    display:"flex",
+    width: "90%",
+    flexDirection:"row",
+    justifyContent: "space-between"
+  },
+});
