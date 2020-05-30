@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Dimensions, Button } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 
 import ProgressBar from "../components/ProgressBar";
 
