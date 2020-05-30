@@ -5,6 +5,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ReportScreen from '../screens/Report'
+import GetStartedScreen from '../screens/GetStarted'
+import NotifScreen from '../screens/NotifScreen'
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -28,6 +30,13 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Report',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-call" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Notifications"
+        component={NotifScreen}
+        options={{
+          title: 'Notifications'
         }}
       />
     </BottomTab.Navigator>
