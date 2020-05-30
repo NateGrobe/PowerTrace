@@ -1,6 +1,13 @@
 //import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import * as React from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Button,
+} from "react-native";
 //import { ScrollView } from 'react-native-gesture-handler';
 
 //import { MonoText } from '../components/StyledText';
@@ -18,11 +25,11 @@ const Home = () => {
       <Image
         source={require("../assets/img/person.png")}
         style={{
-          marginBottom: 15,
+          marginBottom: 25,
         }}
       />
 
-      <Text style={{ color: "white", }} >
+      <Text style={{ color: "white" }}>
         Together, let’s stop the spread of COVID-19.
       </Text>
 
@@ -44,6 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#d4bfff",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   icons_flex: {
     display: "flex",
@@ -52,5 +60,3 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
-
-
