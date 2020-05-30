@@ -18,12 +18,16 @@ export default function DashboardPage() {
 const Dashboard = () => {
   return (
     <View style={styles.container}>
-      <View>
+      <View
+        style={{
+          marginTop: 20,
+        }}
+      >
         <ProgressBar style={styles.progressBar} />
       </View>
       <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
       <View style={styles.statusContainer}>
-        <View>
+        <View style={{ marginTop: 10, marginBottom: 15 }}>
           <StatusBoard
             style={styles.statusBoard}
             boxTitle="My Health Status"
