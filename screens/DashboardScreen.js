@@ -16,18 +16,12 @@ export default function DashboardPage() {
 
 const Dashboard = () => {
   return (
-    <View>
+    <View style={styles.content}>
       <ProgressBar />
-      <StatusBoard />
-      {/* <View style={styles.status_board}>
-        <Text>My Health Status</Text>
-        <Text>
-          Keep track of your health status and update it to keep those around
-          you safe!
-        </Text>
-        <Text>Healthy</Text>
-        <Button title={"Update Status"}></Button>
-      </View> */}
+      <View style={styles.statusContainer}>
+        <StatusBoard />
+        <StatusBoard />
+      </View>
     </View>
   );
 };
@@ -40,9 +34,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: Dimensions.get("window").width,
   },
-  // status_board: {
-  //   color: "#fff",
-  //   backgroundColor: "red",
-  //   width: "100%",
-  // },
+  statusContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  content: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

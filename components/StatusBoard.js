@@ -23,12 +23,15 @@ const Status = () => {
         <View style={styles.title}>
           <FontAwesome name="heartbeat" size={22} color="white" />
           <Text
-            style={{
-              color: "#fff",
-              lineHeight: 21,
-              fontSize: 18,
-              margin: 5,
-            }}
+            style={[
+              styles.textShadow,
+              {
+                color: "#fff",
+                lineHeight: 21,
+                fontSize: 18,
+                margin: 5,
+              },
+            ]}
           >
             My Health Status
           </Text>
@@ -50,13 +53,13 @@ const Status = () => {
       <View style={styles.boardContent}>
         <View style={styles.fixToText}>
           <Text
-            style={{
-              fontSize: 11.5,
-              color: "#fff",
-              textShadowColor: "rgba(0, 0, 0, 0.25)",
-              textShadowOffset: { width: 0, height: 4 },
-              textShadowRadius: 4,
-            }}
+            style={[
+              styles.textShadow,
+              {
+                fontSize: 11.5,
+                color: "#fff",
+              },
+            ]}
           >
             Current Status:{" "}
           </Text>
@@ -111,5 +114,10 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, .4)",
     padding: 2,
     borderRadius: 5,
+  },
+  textShadow: {
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
   },
 });
