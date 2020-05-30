@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, Platform } from "react-native";
+import { View, Text, Button, Platform, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function DatePicker() {
@@ -19,8 +19,9 @@ export default function DatePicker() {
 
   return (
     <View>
-      <Text>Date Tested Positive</Text>
+      <Text style={styles.label}>Date Tested Positive</Text>
       <Button
+        color="rgba(147, 100, 174, 1)"
         onPress={showDatePicker}
         title={date ? date.toString() : "N O T   A P P L I C A B L E  (N A)"}
       />
@@ -38,3 +39,15 @@ export default function DatePicker() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  label: {
+    color: "#fff",
+    fontSize: 18,
+    marginLeft: 10,
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
+    marginBottom: 10,
+  },
+});
