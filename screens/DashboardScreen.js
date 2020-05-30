@@ -55,7 +55,7 @@ const Dashboard = () => {
           />
         </View>
         <View>
-          <View style={{ paddingTop: 50 }}>
+          <View style={{ paddingTop: 40 }}>
             <StatusBoard
               style={styles.statusBoard}
               boxTitle="My Risk Levels"

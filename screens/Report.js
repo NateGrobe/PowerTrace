@@ -32,7 +32,7 @@ const Report = () => {
     <Text style={styles.body_text}>
       <Text style={{ paddingLeft: 10}}>
           <Text>
-            Change Status
+             Status
           </Text>
       </Text>
     </Text>
