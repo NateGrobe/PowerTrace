@@ -37,7 +37,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={NotifScreen}
         options={{
           title: 'Notifications',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-notif" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-notifications-outline" />,
         }}
       />
     </BottomTab.Navigator>
