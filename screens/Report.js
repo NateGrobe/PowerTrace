@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import InputPicker from "../components/InputPicker";
+import DatePicker from "../components/DatePicker";
 
 export default function ReportScreen() {
   return (
@@ -50,6 +51,7 @@ const Report = () => {
           <Picker.Item label="S O R E  T H R O A T " value="soreThroat" />
           <Picker.Item label="F A T I G U E " value="fatige" />
         </InputPicker>
+        <DatePicker />
       </View>
     </View>
   );
