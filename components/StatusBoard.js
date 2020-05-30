@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function StatusBoard() {
@@ -43,13 +49,40 @@ const Status = () => {
 
       <View style={styles.boardContent}>
         <View style={styles.fixToText}>
-          <Text>Current Status: </Text>
-          <Button
+          <Text
+            style={{
+              fontSize: 11.5,
+              color: "#fff",
+              textShadowColor: "rgba(0, 0, 0, 0.25)",
+              textShadowOffset: { width: 0, height: 4 },
+              textShadowRadius: 4,
+            }}
+          >
+            Current Status:{" "}
+          </Text>
+          <TouchableOpacity
             style={styles.button}
-            color="rgba(255, 255, 255, .4)"
-            title="Update Status"
-          />
+            // color="rgba(255, 255, 255, .4)"
+            // title="Update Status"
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 11.5,
+              }}
+            >
+              Update Status
+            </Text>
+          </TouchableOpacity>
         </View>
+        <Text
+          style={{
+            fontSize: 18,
+            color: "#fff",
+          }}
+        >
+          H E A L T H Y & V I R U S - F R E E 💪
+        </Text>
       </View>
     </View>
   );
@@ -72,5 +105,11 @@ const styles = StyleSheet.create({
   fixToText: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, .4)",
+    padding: 2,
+    borderRadius: 5,
   },
 });
