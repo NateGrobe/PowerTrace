@@ -1,44 +1,76 @@
-//import * as WebBrowser from 'expo-web-browser';
-import * as React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button,
-} from "react-native";
-//import { ScrollView } from 'react-native-gesture-handler';
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
+import axios from "axios";
 
-//import { MonoText } from '../components/StyledText';
+import ProgressBar from "../components/ProgressBar";
+import StatusBoard from "../components/StatusBoard";
+import PeopleIconsBar from "../components/PeopleIconsBar";
+
+import userServices from "../services/user";
 
 export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Home />
-    </View>
-  );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  });
+
+  return <View style={styles.container}>{mounted && <Home />}</View>;
 }
+
 const Home = () => {
+  const [user, setUser] = useState([]);
+  const id = "5ed15e8c32b5edd94dcdd00b";
+
+  useEffect(() => {
+    userServices.getUser(id).then((u) => setUser(u));
+  }, []);
+
+  console.log(user);
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/img/person.png")}
-        style={{
-          marginBottom: 25,
-        }}
-      />
-
-      <Text style={{ color: "white" }}>
-        Together, let’s stop the spread of COVID-19.
-      </Text>
-
-      <Image source={require("../assets/img/PT3.png")} />
-
-      <View style={styles.icons_flex}>
-        <Image source={require("../assets/img/person.png")} />
-        <View style={{ paddingTop: 40 }}>
-          <Image source={require("../assets/img/person1.png")} />
+      <View style={{ paddingTop: 30 }}>
+        <View>
+          <ProgressBar style={styles.progressBar} />
+        </View>
+      </View>
+      <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
+      <View style={styles.statusContainer}>
+        <View>
+          <View style={{ paddingTop: 10 }}>
+            <StatusBoard
+              style={styles.statusBoard}
+              boxTitle="My Health Status"
+              boxDescription="Keep track of your health status and update it to keep those around
+              you safe!"
+              boxIndicator="Current Status"
+              boxContent={
+                user.infected
+                  ? "I N F E C T E D !"
+                  : "H E A L T H Y & V I R U S - F R E E 💪"
+              }
+              btnText="Update Status"
+              iconName="heartbeat"
+            />
+          </View>
+        </View>
+        <View>
+          <View style={{ paddingTop: 15 }}>
+            <StatusBoard
+              style={styles.statusBoard}
+              boxTitle="My Risk Levels"
+              boxDescription="Stay informated of your possible exposure to the virus"
+              boxIndicator="Current Risk"
+              boxContent={user.infected ? "U N S A F E" : "S A F E ✔️"}
+              btnText="Check your Exposure"
+              iconName="warning"
+              complementaryText={
+                user.infected
+                  ? "Oh no! You have likely been infected."
+                  : "Great! You’ve not been in contact with COVID-19 patients. "
+              }
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -50,13 +82,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#d4bfff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    // width: Dimensions.get("window").width,
+    // flexDirection: "column",
     width: "100%",
   },
-  icons_flex: {
+  statusContainer: {
     display: "flex",
-    width: "90%",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    // justifyContent: "ce",
+  },
+  // content: {
+  //   flex: 1,
+  //   flexDirection: "column",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   width: "100%",
+  // },
+  progressBar: {
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  statusBoard: {
+    marginBottom: 5,
   },
 });

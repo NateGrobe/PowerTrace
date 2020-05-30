@@ -4,7 +4,7 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import ReportScreen from "../screens/Report";
-import DashboardScreen from "../screens/DashboardScreen";
+// import DashboardScreen from "../screens/HomeScreen";
 import NotifScreen from "../screens/NotifScreen";
 
 const BottomTab = createBottomTabNavigator();
@@ -25,7 +25,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Dashboard"
         component={DashboardScreen}
         options={{
@@ -34,7 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon focused={focused} name="md-medkit" />
           ),
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name="Report"
         component={ReportScreen}
