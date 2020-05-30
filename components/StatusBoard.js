@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,20 +8,22 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-export default function StatusBoard() {
-  return (
-    <View>
-      <Status />
-    </View>
-  );
+export default function StatusBoard(props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  });
+
+  return <View>{mounted && <Status {...props} />}</View>;
 }
 
-const Status = () => {
+const Status = (props) => {
   return (
     <View>
       <View style={styles.boardHeader}>
         <View style={styles.title}>
-          <FontAwesome name="heartbeat" size={22} color="white" />
+          <FontAwesome name={props.iconName} size={22} color="white" />
           <Text
             style={[
               styles.textShadow,
@@ -33,9 +35,9 @@ const Status = () => {
               },
             ]}
           >
-            My Health Status
+            {props.boxTitle}
           </Text>
-          <FontAwesome name="heartbeat" size={22} color="white" />
+          <FontAwesome name={props.iconName} size={22} color="white" />
         </View>
         <Text
           style={{
@@ -43,10 +45,10 @@ const Status = () => {
             fontSize: 10.5,
             width: "90%",
             marginLeft: 5,
+            padding: 2,
           }}
         >
-          Keep track of your health status and update it to keep those around
-          you safe!
+          {props.boxDescription}
         </Text>
       </View>
 
@@ -58,10 +60,11 @@ const Status = () => {
               {
                 fontSize: 11.5,
                 color: "#fff",
+                marginLeft: 5,
               },
             ]}
           >
-            Current Status:{" "}
+            {props.boxIndicator}
           </Text>
           <TouchableOpacity
             style={styles.button}
@@ -74,7 +77,7 @@ const Status = () => {
                 fontSize: 11.5,
               }}
             >
-              Update Status
+              {props.btnText}
             </Text>
           </TouchableOpacity>
         </View>
@@ -82,10 +85,22 @@ const Status = () => {
           style={{
             fontSize: 18,
             color: "#fff",
+            marginLeft: 5,
           }}
         >
-          H E A L T H Y & V I R U S - F R E E 💪
+          {props.boxContent}
         </Text>
+        {props.complementaryText && (
+          <Text
+            style={{
+              color: "#fff",
+              fontSize: 10.5,
+              marginLeft: 5,
+            }}
+          >
+            {props.complementaryText}
+          </Text>
+        )}
       </View>
     </View>
   );
@@ -104,6 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     marginLeft: 5,
+    paddingTop: 2,
   },
   fixToText: {
     flexDirection: "row",
