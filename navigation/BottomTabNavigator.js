@@ -36,13 +36,13 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Notifications"
         component={NotifScreen}
         options={{
-          title: 'Notifications'
+          title: 'Notifications',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-notif" />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
-
 const getHeaderTitle = route => {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
@@ -51,5 +51,7 @@ const getHeaderTitle = route => {
       return 'Home';
     case 'Report':
       return 'Report';
+    case 'Notifications':
+      return 'Notifications';
   }
 }

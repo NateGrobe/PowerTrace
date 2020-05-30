@@ -9,6 +9,16 @@ export default function GetStartedScreen() {
   )
 }
 
+const Report = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={{ color: "white" }}>
+        Notifications
+      </Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
