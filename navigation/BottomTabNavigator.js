@@ -6,6 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ReportScreen from "../screens/Report";
 // import DashboardScreen from "../screens/HomeScreen";
 import NotifScreen from "../screens/NotifScreen";
+import FriendsScreen from "../screens/FriendsScreen";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -55,6 +56,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Friends"
+        component={FriendsScreen}
+        options={{
+          title: "Friends",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-person" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -69,5 +80,7 @@ const getHeaderTitle = (route) => {
       return "Report";
     case "Notifications":
       return "Notifications";
+    case "Friends":
+      return "Friends";
   }
 };
