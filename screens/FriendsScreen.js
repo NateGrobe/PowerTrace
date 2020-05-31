@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function FriendsScreen() {
   const [username, setUsername] = useState("");
@@ -21,6 +22,8 @@ export default function FriendsScreen() {
       </View>
       <View style={styles.inputComponent}>
         <View style={styles.labelComponet}>
+          <Ionicons name="md-person-add" size={30} color="#fff" />
+
           <Text style={styles.label}>Add to Friend List</Text>
         </View>
         <View style={styles.inputContainer}>
@@ -57,10 +60,10 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "rgba(147, 100, 174, 0)",
-    height: 40,
+    height: 45,
     width: 300,
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: 0,
   },
   inputContainer: {
     backgroundColor: "rgba(147, 100, 174, .3)",
@@ -69,10 +72,20 @@ const styles = StyleSheet.create({
   inputComponent: {
     width: "90%",
   },
-  label: { color: "#fff", padding: 10 },
+  label: {
+    color: "#fff",
+    padding: 10,
+    fontSize: 22,
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
+  },
   labelComponet: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
     backgroundColor: "rgba(147, 100, 174, .5)",
-    marginTop: 40,
+    marginTop: 30,
   },
   btn: {
     marginTop: 40,
