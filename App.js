@@ -20,6 +20,7 @@ import HomeScreen from "./screens/HomeScreen";
 import SignupScreen from "./screens/SignupScreen";
 
 import loginServices from "./services/login";
+import userServices from './services/user'
 
 const Stack = createStackNavigator();
 
@@ -44,13 +45,24 @@ export default function App() {
       });
   }, [submitted]);
 
+  const handleSignUp = obj => {
+    userServices
+      .createUser(obj)
+      .then(u => {
+        console.log(u)
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
+  };
+
   if (!isLoadingComplete) {
     return null;
   } else if (signUp) {
     return (
       <SignupScreen
         handleBack={() => setSignUp(false)}
-        handleSignUp={() => console.log("Signing Up")}
+        handleSignUp={obj => handleSignUp(obj)}
       />
     );
   } else if (!started) {
