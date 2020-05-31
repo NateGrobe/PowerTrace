@@ -29,4 +29,13 @@ reportRouter.post('/', async (req, res) => {
   res.json(savedReport)
 })
 
+reportRouter.get('/:id', async (req, res) => {
+  const report = await Report.findById(req.params.id)
+
+  if (report)
+    res.json(report.toJSON())
+  else
+    res.status(404).end()
+})
+
 module.exports = reportRouter

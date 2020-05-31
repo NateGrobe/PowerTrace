@@ -26,7 +26,6 @@ usersRouter.post('/', async (req, res) => {
 // single user
 usersRouter.get('/:id', async (req, res) => {
   const user = await User.findById(req.params.id)
-  console.log(user)
   if (user) 
     res.json(user.toJSON())
   else
@@ -37,7 +36,7 @@ usersRouter.put('/:id', async (req, res) => {
   const body = req.body
   const userBeforeChange = await User.findById(req.params.id)
   const newConnection = await User.findById(body.connections)
-  const connIsUnique = userBeforeChange.connections.filter(c => c === body.connections).length !== 0
+  const connIsUnique = userBeforeChange.connections.filter(c => c === body.connections).length === 0
 
   let user = {}
 
@@ -49,6 +48,7 @@ usersRouter.put('/:id', async (req, res) => {
         : userBeforeChange.connections,
     }
   }
+
   const updatedUser = await User.findByIdAndUpdate(req.params.id, user, { new: true })
   res.json(updatedUser.toJSON())
 })

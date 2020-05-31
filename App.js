@@ -56,9 +56,6 @@ export default function App() {
       .catch((error) => {
         console.log("signup", error.message);
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
   };
 
   if (!isLoadingComplete) {

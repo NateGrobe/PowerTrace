@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import {
   Image,
   StyleSheet,
@@ -10,17 +10,68 @@ import {
 
 import ContactBoard from "../components/ContactBoard";
 
+import userServices from '../services/user'
+import reportServices from '../services/report'
+
 export default function NotifScreen() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.contactBoard}>
-        <ContactBoard date={Date(1590885044091)} />
+  const [refresh, setRefresh] = useState(false)
+  const [user, setUser] = useState()
+  const [connections, setConnections] = useState([])
+  const [reportDate, setReportDate] = useState(new Date())
+
+  useEffect(() => {
+    userServices
+      .getUser(global.id)
+      .then(u => {
+        setUser(u)
+        if (u.connections.length > 0) {
+          u.connections.map(conn => {
+            userServices
+              .getUser(conn)
+              .then(c => {
+                setConnections(connections.concat(c))
+              })
+          });
+        }
+      })
+      .catch(error => {
+        console.log('noti refresh', error.message)
+      })
+    setRefresh(false)
+  }, [refresh]);
+
+  const refreshNoti = () => {
+    setRefresh(true)
+  };
+
+  if (connections.length > 0) {
+    const conn = connections[connections.length -1]
+    reportServices
+      .getReport(conn.reports[conn.reports.length -1])
+      .then(r => {
+        setReportDate(r.date)
+      })
+      .catch(error => {
+        console.log('conn', error.message)
+      })
+  }
+
+  if (connections.lenght > 0) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.contactBoard}>
+          <ContactBoard date={reportDate} />
+        </View>
+        <Button title='Refresh' onPress={refreshNoti} />
       </View>
-      <View style={styles.contactBoard}>
-        <ContactBoard date={Date(1590885044091)} />
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>No notifications at this time.</Text>
       </View>
-    </View>
-  );
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -40,4 +91,9 @@ const styles = StyleSheet.create({
   //   flexDirection: "row",
   //   justifyContent: "space-between",
   // },
+  text : {
+    color: 'white',
+    marginTop: 100,
+    fontSize: 20 
+  }
 });
