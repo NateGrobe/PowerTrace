@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import {
   Platform,
   StatusBar,
@@ -16,34 +16,43 @@ import {
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
-import HomeScreen from './screens/HomeScreen'
+import HomeScreen from "./screens/HomeScreen";
+import SignupScreen from "./screens/SignupScreen";
 
-import loginServices from './services/login'
+import loginServices from "./services/login";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [started, setStarted] = useState(false)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [currentUser, setCurrentUser] = useState({})
-  const [submitted, setSubmitted] = useState(false)
+  const [started, setStarted] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+  const [submitted, setSubmitted] = useState(false);
   const isLoadingComplete = useCachedResources();
+  const [signUp, setSignUp] = useState(false);
 
   useEffect(() => {
     loginServices
       .validateLogin(username, password)
-      .then(u => {
-        setCurrentUser(u)
-        setStarted(true)
+      .then((u) => {
+        setCurrentUser(u);
+        setStarted(true);
       })
-      .catch(err => {
-        setSubmitted(false)
-      })
-  }, [submitted])
+      .catch((err) => {
+        setSubmitted(false);
+      });
+  }, [submitted]);
 
   if (!isLoadingComplete) {
     return null;
+  } else if (signUp) {
+    return (
+      <SignupScreen
+        handleBack={() => setSignUp(false)}
+        handleSignUp={() => console.log("Signing Up")}
+      />
+    );
   } else if (!started) {
     return (
       <View style={styles.container}>
@@ -60,19 +69,19 @@ export default function App() {
                 <View style={{ marginTop: 40 }}>
                   <Image source={require("./assets/img/person1.png")} />
                 </View>
-                <TextInput 
-                  style={styles.input} 
-                  placeholder=' Username' 
+                <TextInput
+                  style={styles.input}
+                  placeholder=" Username"
                   value={username}
-                  onChangeText={username => setUsername(username)}
-                /> 
-                <TextInput 
-                  style={styles.input} 
-                  placeholder=' Password' 
-                  secureTextEntry={true} 
+                  onChangeText={(username) => setUsername(username)}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder=" Password"
+                  secureTextEntry={true}
                   value={password}
-                  onChangeText={pass => setPassword(pass)}
-                /> 
+                  onChangeText={(pass) => setPassword(pass)}
+                />
               </View>
             </View>
           </View>
@@ -84,10 +93,19 @@ export default function App() {
             onPress={() => setSubmitted(true)}
           />
         </View>
+        <View style={styles.btnSignUp}>
+          <Button
+            color="rgba(147, 100, 174, .7)"
+            title="Sign Up"
+            onPress={() => {
+              setSignUp(true);
+            }}
+          />
+        </View>
       </View>
     );
   } else {
-    global.id = currentUser.id
+    global.id = currentUser.id;
     return (
       <View style={styles.container}>
         {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
@@ -130,8 +148,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 15,
   },
+  btnSignUp: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+    position: "absolute",
+    bottom: 75,
+  },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     height: 40,
     width: 300,
     borderRadius: 5,
