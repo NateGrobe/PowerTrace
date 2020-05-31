@@ -27,6 +27,7 @@ const Report = () => {
   const [symptoms, setSymptoms] = useState('none')
   const [date, setDate] = useState(new Date())
 
+  console.log(global.id)
   const submitReport = () => {
     let report = {
       status: status,
