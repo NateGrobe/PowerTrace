@@ -14,7 +14,7 @@ export default function SignupScreen(props) {
         username: username,
         password: password,
         infected: false,
-      } 
+      }
     props.handleSignUp(user)
     }
   };
