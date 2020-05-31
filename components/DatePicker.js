@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Button, Platform, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function DatePicker() {
-  const [date, setDate] = useState(null);
+export default function DatePicker({ returnDate }) {
+  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
   const showDatePicker = () => {
@@ -15,6 +15,7 @@ export default function DatePicker() {
     const currentDate = selectedDate || randomDate;
     setShow(Platform.OS === "ios");
     setDate(currentDate);
+    returnDate(currentDate)
   };
 
   return (

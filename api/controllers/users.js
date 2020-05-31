@@ -3,7 +3,8 @@ const usersRouter = require('express').Router()
 const User = require('../models/user')
 
 usersRouter.get('/', async (req, res) => {
-  const users = await User.find({})
+  const users = await User
+    .find({}).populate('person')
   res.json(users.map(user => user.toJSON()))
 })
 
@@ -36,7 +37,6 @@ usersRouter.put('/:id', async (req, res) => {
   const body = req.body
   const userBeforeChange = await User.findById(req.params.id)
   const newConnection = await User.findById(body.connections)
-
   const connIsUnique = userBeforeChange.connections.filter(c => c === body.connections).length !== 0
 
   let user = {}
@@ -44,7 +44,9 @@ usersRouter.put('/:id', async (req, res) => {
   if (connIsUnique) {
     user = {
       infected: newConnection.infected || userBeforeChange.infected,
-      connections: userBeforeChange.connections.concat(body.connections)
+      connections: body.connections 
+        ? userBeforeChange.connections.concat(body.connections) 
+        : userBeforeChange.connections,
     }
   }
   const updatedUser = await User.findByIdAndUpdate(req.params.id, user, { new: true })
