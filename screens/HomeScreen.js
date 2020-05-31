@@ -29,6 +29,10 @@ const Home = () => {
 
   const refreshStatus = () => setRefresh(true);
 
+  global.daysSafe = user.infected 
+    ? 0
+    : 76
+
   return (
     <View style={styles.container}>
       <View style={{ paddingTop: 30 }}>
