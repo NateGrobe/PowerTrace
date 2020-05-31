@@ -30,8 +30,9 @@ export default function App() {
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const isLoadingComplete = useCachedResources();
   const [signUp, setSignUp] = useState(false);
+
+  const isLoadingComplete = useCachedResources();
 
   useEffect(() => {
     loginServices
@@ -40,7 +41,8 @@ export default function App() {
         setCurrentUser(u);
         setStarted(true);
       })
-      .catch((err) => {
+      .catch((error) => {
+        console.log("login", error.message);
         setSubmitted(false);
       });
   }, [submitted]);
@@ -49,7 +51,10 @@ export default function App() {
     userServices
       .createUser(obj)
       .then((u) => {
-        console.log(u);
+        setSignUp(false);
+      })
+      .catch((error) => {
+        console.log("signup", error.message);
       })
       .catch((error) => {
         console.log(error.message);
