@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Button } from 'react-native-elements';
 import {
   Image,
   StyleSheet,
