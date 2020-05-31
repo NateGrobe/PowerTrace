@@ -36,7 +36,7 @@ usersRouter.put('/:id', async (req, res) => {
   const body = req.body
   const userBeforeChange = await User.findById(req.params.id)
   const newConnection = await User.findById(body.connections)
-  const connIsUnique = userBeforeChange.connections.filter(c => c === body.connections).length === 0
+  const connIsUnique = userBeforeChange.connections.filter(c => c == body.connections).length === 0
 
   let user = {}
 

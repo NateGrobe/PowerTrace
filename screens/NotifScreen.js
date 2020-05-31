@@ -56,7 +56,7 @@ export default function NotifScreen() {
       })
   }
 
-  if (connections.lenght > 0) {
+  if (connections.filter(conn => conn.infected == true).length) {
     return (
       <View style={styles.container}>
         <View style={styles.contactBoard}>
@@ -69,6 +69,7 @@ export default function NotifScreen() {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>No notifications at this time.</Text>
+        <Button title='Refresh' onPress={refreshNoti} />
       </View>
     )
   }

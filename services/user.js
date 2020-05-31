@@ -17,4 +17,15 @@ const createUser = obj => {
   return req.then(res => res.data)
 }
 
-export default { getAll, getUser, createUser }
+const getFriend = username => {
+  const req = axios.get(baseUrl)
+  return req.then(res => res.data.filter(r => r.username === username))
+}
+
+const addConnection = (fid, uid) => {
+  const obj = { 'connections': fid }
+  const req = axios.put(`${baseUrl}/${uid}`, obj)
+  return req.then(res => res.data)
+}
+
+export default { getAll, getUser, createUser, getFriend, addConnection }

@@ -1,9 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import userServices from '../services/user'
+
 export default function FriendsScreen() {
   const [username, setUsername] = useState("");
+  const [people, setPeople] = useState([])
+
+  useEffect(() => {
+    userServices
+      .getAll()
+      .then(r => {
+        setPeople(r)
+      })
+      .catch(error => {
+        console.log('get people', error.message)
+      })
+  }, []);
+
+  const allowAdd = () => {
+    const friendId = people.filter(p => p.username === username)[0].id
+    userServices
+      .addConnection(friendId, global.id)
+      .then(r => {
+        console.log('added', r)
+      })
+      .catch(error => {
+        console.log('adding friend', error.message)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -39,7 +65,7 @@ export default function FriendsScreen() {
         <Button
           title="Add Friend"
           color="rgba(147, 100, 174, 1)"
-          onPress={() => console.log("Adding Friend " + username)}
+          onPress={allowAdd}
         />
       </View>
     </View>
