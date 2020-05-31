@@ -19,6 +19,13 @@ export default function NotifScreen() {
   const [user, setUser] = useState()
   const [connections, setConnections] = useState([])
   const [reportDate, setReportDate] = useState(new Date())
+  const theme ={
+    Button:{
+      titleStyle:{
+        color: '#9364AE',
+      },
+    },
+  };
 
   useEffect(() => {
     userServices
@@ -64,9 +71,10 @@ export default function NotifScreen() {
           <ContactBoard date={reportDate} />
         </View>
         <Button
-          type="solid"
-          title="Refresh"
-          color="#white"
+          //icon={{name: 'cached'}}
+          //background-color='#9364AE'
+          color={'#9364AE'}
+          title='Refresh'
           onPress={refreshNoti} />
       </View>
     );
@@ -75,11 +83,17 @@ export default function NotifScreen() {
       <View style={styles.container}>
         <Text style={styles.text}>No notifications at this time.</Text>
         <Button
-          title='solid'
-          type="outline"
-          color="#white"
+          buttonStyle={{ backgroundColor:"white"}}
+          //icon={{name: 'cached'}}
+          //backgroundColor="#9364AE"
+          title='Refresh'
           onPress={refreshNoti} />
       </View>
+        //<Button
+          //title='solid'
+          //type="outline"
+          //color="#white"
+          //onPress={refreshNoti} />
     )
   }
 }
