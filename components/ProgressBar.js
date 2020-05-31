@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
@@ -13,7 +13,7 @@ export default function ProgressBar(props) {
 const DayCount = (props) => {
   return (
     <View style={styles.dayCount}>
-      <Text style={styles.titleText}>76</Text>
+      <Text style={styles.titleText}>{global.daysSafe}</Text>
       <Text style={styles.baseText}>Days of Staying Safe</Text>
     </View>
   );
