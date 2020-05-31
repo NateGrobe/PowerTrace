@@ -12,6 +12,9 @@ reportRouter.post('/', async (req, res) => {
 
   const user = await User.findById(body.person)
 
+  if (body.status === 'positive' || body.status === 'symptoms')
+    user.infected = true
+
   const report = new Report({
     status: body.status,
     symptoms: body.symptoms,
