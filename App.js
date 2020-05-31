@@ -16,11 +16,11 @@ import {
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
-import HomeScreen from "./screens/HomeScreen";
+import StartScreen from "./screens/StartScreen";
 import SignupScreen from "./screens/SignupScreen";
 
 import loginServices from "./services/login";
-import userServices from './services/user'
+import userServices from "./services/user";
 
 const Stack = createStackNavigator();
 
@@ -45,24 +45,24 @@ export default function App() {
       });
   }, [submitted]);
 
-  const handleSignUp = obj => {
+  const handleSignUp = (obj) => {
     userServices
       .createUser(obj)
-      .then(u => {
-        console.log(u)
+      .then((u) => {
+        console.log(u);
       })
-      .catch(error => {
-        console.log(error.message)
-      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   if (!isLoadingComplete) {
-    return null;
+    return <StartScreen />;
   } else if (signUp) {
     return (
       <SignupScreen
         handleBack={() => setSignUp(false)}
-        handleSignUp={obj => handleSignUp(obj)}
+        handleSignUp={(obj) => handleSignUp(obj)}
       />
     );
   } else if (!started) {
