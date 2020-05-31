@@ -20,13 +20,11 @@ export default function HomeScreen() {
 
 const Home = () => {
   const [user, setUser] = useState([]);
-  const id = "5ed15e8c32b5edd94dcdd00b";
 
   useEffect(() => {
-    userServices.getUser(id).then((u) => setUser(u));
+    userServices.getUser(global.id).then((u) => setUser(u));
   }, []);
 
-  console.log(user);
   return (
     <View style={styles.container}>
       <View style={{ paddingTop: 30 }}>
@@ -34,7 +32,7 @@ const Home = () => {
           <ProgressBar style={styles.progressBar} />
         </View>
       </View>
-      <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
+      <PeopleIconsBar days='76' style={{ marginBottom: 5 }} />
       <View style={styles.statusContainer}>
         <View>
           <View style={{ paddingTop: 10 }}>
