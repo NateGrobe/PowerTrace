@@ -21,7 +21,7 @@ export default function ContactBoard(props) {
       <View style={styles.secondRow}>
         <View style={styles.iconRow}>
           <Ionicons name="md-clock" size={18} color="#fff" />
-          <Text style={styles.subtitle}>{" CONTACT DATE:"}</Text>
+          <Text style={styles.subtitle}>{" DATE TESTED POSITIVE:"}</Text>
         </View>
         <Text style={styles.subtitle}>{props.date.toString()}</Text>
         <Text style={{ fontSize: 12, color: "#fff" }}>
