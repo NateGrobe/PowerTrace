@@ -20,16 +20,14 @@ export default function HomeScreen() {
 
 const Home = () => {
   const [user, setUser] = useState([]);
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    userServices
-      .getUser(global.id)
-      .then((u) => setUser(u));
-    setRefresh(false)
+    userServices.getUser(global.id).then((u) => setUser(u));
+    setRefresh(false);
   }, [refresh]);
 
-  const refreshStatus = () => setRefresh(true)
+  const refreshStatus = () => setRefresh(true);
 
   return (
     <View style={styles.container}>
@@ -38,7 +36,7 @@ const Home = () => {
           <ProgressBar style={styles.progressBar} />
         </View>
       </View>
-      <PeopleIconsBar days='76' style={{ marginBottom: 5 }} />
+      <PeopleIconsBar days="76" style={{ marginBottom: 5 }} />
       <View style={styles.statusContainer}>
         <View>
           <View style={{ paddingTop: 10 }}>
@@ -75,7 +73,7 @@ const Home = () => {
               }
             />
           </View>
-          <Button title='Refresh' onPress={refreshStatus} />
+          <Button color="#9364AE" title="Refresh" onPress={refreshStatus} />
         </View>
       </View>
     </View>

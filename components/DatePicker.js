@@ -15,14 +15,14 @@ export default function DatePicker({ returnDate }) {
     const currentDate = selectedDate || randomDate;
     setShow(Platform.OS === "ios");
     setDate(currentDate);
-    returnDate(currentDate)
+    returnDate(currentDate);
   };
 
   return (
     <View>
       <Text style={styles.label}>Date Tested Positive</Text>
       <Button
-        color="rgba(147, 100, 174, 1)"
+        color="rgba(147, 100, 174, 0.55)"
         onPress={showDatePicker}
         title={date ? date.toString() : "N O T   A P P L I C A B L E  (N A)"}
       />

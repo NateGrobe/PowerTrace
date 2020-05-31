@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 import InputPicker from "../components/InputPicker";
 import DatePicker from "../components/DatePicker";
 
-import reportServices from '../services/report'
+import reportServices from "../services/report";
 
 export default function ReportScreen() {
   return (
@@ -23,28 +23,28 @@ export default function ReportScreen() {
 }
 
 const Report = () => {
-  const [status, setStatus] = useState('healthy')
-  const [symptoms, setSymptoms] = useState('none')
-  const [date, setDate] = useState(new Date())
+  const [status, setStatus] = useState("healthy");
+  const [symptoms, setSymptoms] = useState("none");
+  const [date, setDate] = useState(new Date());
 
-  console.log(global.id)
+  console.log(global.id);
   const submitReport = () => {
     let report = {
       status: status,
       symptoms: symptoms,
       date: date,
-      person: global.id
-    }
+      person: global.id,
+    };
 
     reportServices
       .sendReport(report)
-      .then(rep => {
-        console.log(rep)
+      .then((rep) => {
+        console.log(rep);
       })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -54,10 +54,10 @@ const Report = () => {
         <View style={{ paddingTop: 18, paddingLeft: 60 }}>
           <Image source={require("../assets/img/firstaidkit.png")} />
         </View>
-        <InputPicker 
-          label="Change Status" 
+        <InputPicker
+          label="Change Status"
           defaultChoice="healthy"
-          returnInput={input => setStatus(input)}
+          returnInput={(input) => setStatus(input)}
         >
           <Picker.Item
             label="H E A L T H Y  &  V I R U S - F R E E 💪"
@@ -73,10 +73,10 @@ const Report = () => {
             color="red"
           />
         </InputPicker>
-        <InputPicker 
-          label="Exhibited Symptoms" 
+        <InputPicker
+          label="Exhibited Symptoms"
           defaultChoice="none"
-          returnInput={input => setSymptoms(input)}
+          returnInput={(input) => setSymptoms(input)}
         >
           <Picker.Item label="N O N E  ✔" value="none" />
           <Picker.Item label="F E V ER " value="fever" />
@@ -84,9 +84,16 @@ const Report = () => {
           <Picker.Item label="S O R E  T H R O A T " value="soreThroat" />
           <Picker.Item label="F A T I G U E " value="fatige" />
         </InputPicker>
-        <DatePicker returnDate={returnedDate => setDate(returnedDate)} />
+        <DatePicker returnDate={(returnedDate) => setDate(returnedDate)} />
       </View>
-      <Button title='Submit' onPress={submitReport} />
+      <View
+        style={{
+          width: "84%",
+          marginTop: 20,
+        }}
+      >
+        <Button color="#9364AE" title="Submit" onPress={submitReport} />
+      </View>
     </View>
   );
 };
