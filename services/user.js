@@ -12,4 +12,9 @@ const getUser = id => {
   return req.then(res => res.data)
 }
 
-export default { getAll, getUser }
+const createUser = obj => {
+  const req = axios.post(baseUrl, obj)
+  return req.then(res => res.data)
+}
+
+export default { getAll, getUser, createUser }

@@ -2,11 +2,22 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, Image, TextInput } from "react-native";
 import { useLinkProps } from "@react-navigation/native";
 
+
 export default function SignupScreen(props) {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repitedPassword, setRepitedPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
+
+  const addUser = () => {
+    if (password === repeatedPassword) {
+      const user = {
+        username: username,
+        password: password,
+        infected: false,
+      } 
+    props.handleSignUp(user)
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -22,12 +33,6 @@ export default function SignupScreen(props) {
         />
         <TextInput
           style={styles.input}
-          placeholder=" Email"
-          value={email}
-          onChangeText={(email) => setEmail(email)}
-        />
-        <TextInput
-          style={styles.input}
           placeholder=" Password"
           value={password}
           secureTextEntry={true}
@@ -36,13 +41,13 @@ export default function SignupScreen(props) {
         <TextInput
           style={styles.input}
           placeholder="Re-enter Password"
-          value={repitedPassword}
+          value={repeatedPassword}
           secureTextEntry={true}
-          onChangeText={(repitedPassword) =>
-            setRepitedPassword(repitedPassword)
+          onChangeText={(repeatedPassword) =>
+            setRepeatedPassword(repeatedPassword)
           }
         />
-        {password !== repitedPassword && (
+        {password !== repeatedPassword && (
           <Text style={{ color: "red" }}>Passwords should be the same</Text>
         )}
         <View style={styles.btnRow}>
@@ -57,7 +62,7 @@ export default function SignupScreen(props) {
             <Button
               color="#9364AE"
               title="  Sign Up  "
-              onPress={props.handleSignUp}
+              onPress={addUser}
             />
           </View>
         </View>
