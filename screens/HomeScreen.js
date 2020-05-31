@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import axios from "axios";
 
 import ProgressBar from "../components/ProgressBar";
@@ -20,10 +20,16 @@ export default function HomeScreen() {
 
 const Home = () => {
   const [user, setUser] = useState([]);
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
-    userServices.getUser(global.id).then((u) => setUser(u));
-  }, []);
+    userServices
+      .getUser(global.id)
+      .then((u) => setUser(u));
+    setRefresh(false)
+  }, [refresh]);
+
+  const refreshStatus = () => setRefresh(true)
 
   return (
     <View style={styles.container}>
@@ -69,6 +75,7 @@ const Home = () => {
               }
             />
           </View>
+          <Button title='Refresh' onPress={refreshStatus} />
         </View>
       </View>
     </View>

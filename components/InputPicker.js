@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import { View, Picker, StyleSheet, Text } from "react-native";
 
-export default function InputPicker(props) {
-  const [selectedValue, setSelectedValue] = useState(props.default);
+export default function InputPicker({ defaultChoice, label, children, returnInput }) {
+  const [selectedValue, setSelectedValue] = useState(defaultChoice);
+
+  const updateItem = (itemValue, itemIndex) => {
+    setSelectedValue(itemValue)
+    returnInput(itemValue)
+  };
 
   return (
     <View style={StyleSheet.container}>
-      <Text style={styles.label}>{props.label}</Text>
+      <Text style={styles.label}>{label}</Text>
       <Picker
         // mode="dropdown"
         selectedValue={selectedValue}
         style={{ height: 50, width: "100%" }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        onValueChange={updateItem}
         itemStyle={{
           color: "white",
           backgroundColor: "rgba(147, 100, 174, .3)",
         }}
       >
-        {props.children}
+        {children}
       </Picker>
     </View>
   );

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 // can use id as the code for each phone
 const userSchema = new mongoose.Schema({
@@ -20,7 +21,15 @@ const userSchema = new mongoose.Schema({
     }
   ],
   location: String,
+  reports: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Report',
+    }
+  ]
 })
+
+userSchema.plugin(uniqueValidator)
 
 userSchema.set('toJSON', {
   transform: (doc, obj) => {
