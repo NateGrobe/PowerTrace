@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Button } from 'react-native-elements';
 import {
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
+  //Button,
 } from "react-native";
 
 import ContactBoard from "../components/ContactBoard";
@@ -62,14 +63,22 @@ export default function NotifScreen() {
         <View style={styles.contactBoard}>
           <ContactBoard date={reportDate} />
         </View>
-        <Button title='Refresh' onPress={refreshNoti} />
+        <Button
+          type="solid"
+          title="Refresh"
+          color="#white"
+          onPress={refreshNoti} />
       </View>
     );
   } else {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>No notifications at this time.</Text>
-        <Button title='Refresh' onPress={refreshNoti} />
+        <Button
+          title='solid'
+          type="outline"
+          color="#white"
+          onPress={refreshNoti} />
       </View>
     )
   }
@@ -95,6 +104,6 @@ const styles = StyleSheet.create({
   text : {
     color: 'white',
     marginTop: 100,
-    fontSize: 20 
+    fontSize: 20
   }
 });
